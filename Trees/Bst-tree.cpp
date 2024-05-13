@@ -65,6 +65,7 @@ int searchBstNode(bstNode* root,int toSearch,int &a){
     } 
     return a;   
 }
+//this one is bstnode type bcs delete function needs returned min node(root)
 bstNode* minBstNode(bstNode *root){
   if (root == NULL)
   {
@@ -78,18 +79,18 @@ bstNode* minBstNode(bstNode *root){
   minBstNode(root->left);
   return NULL;
 }
-bstNode* maxBstNode(bstNode *root){
+void maxBstNode(bstNode *root){
   if (root == NULL)
   {
-    return NULL;
+    return;
   }
   if (root->right == NULL)
   {
     cout<<"Maximum Node:"<< root->data;
-    return root;
+    return;
   }
   maxBstNode(root->right);
-  return NULL;
+  return ;
 }
 bstNode* deleteBstNode(bstNode **root,int toDelete){
   if ((*root) == NULL)
