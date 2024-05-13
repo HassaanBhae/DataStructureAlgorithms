@@ -2,7 +2,7 @@
 #include <stdlib.h>
 using namespace std;
 void enQueue(int queue[],int size,int *front,int *rear){
-    if((*rear==size-1 && *front==0)|| (*rear + 1 ==* front)){
+    if((*rear==size-1 && *front==0)|| ((*rear) + 1 ==(*front))){
         cout<<"Queue Is Full!\n";
     }else{
         cout<<"Enter The Value To enQueue:";
@@ -11,50 +11,60 @@ void enQueue(int queue[],int size,int *front,int *rear){
         if (*front == -1){
             *front = 0;
             *rear = 0;
-            queue[*rear] = value;
+            queue[(*rear)] = value;
         return;
         }else{
             if(*rear==size-1 && front !=0){
-            rear=0;
+            (*rear)=0;
             }
             else{
                 (*rear)++;
             }
-            queue[*rear]=value;
+            queue[(*rear)]=value;
             }
         }
         }
 
 int deQueue(int queue[],int size,int *front,int *rear){
-	if(*front==-1 || (*front)>(*rear)){
-		cout<<"Queue Is Empty!\n";
-        return 0;
+	if ((*front)==-1){
+    	cout <<"Queue is Empty!\n";
+		return 0;
 	}else{
-        int a= queue[*front];
-        if((*front)==(*rear) && (*front)!=-1){
-            *front=-1;
-            *rear=-1;
-        }
-        if ((*front)==size-1){
-            *front=0;
-        }else{
-        (*front)++;
-        }
-        return a;
-	}
+		if((*front)==(*rear) && (*front)!=-1){
+    		int value = queue[*front];
+			(*front)=-1;
+        	(*rear)=-1;
+			return value;
+		}
+    	int value = queue[*front];
+    	(*front)++;
+		if((*front)==size){
+			(*front)=0;
+		}
+		return value;
+    }
+	
 }
-void print(int queue[],int size,int *front,int *rear){
-  if (*front==-1 || *front>*rear){
-    cout << "Queue is Empty!\n" << endl;
-    return;
-  }else{
-  cout << "Queue values are ";
-  for (int i = 0; i < size; i++)
-  {
-    cout << queue[i] << " ";
-  }
-  cout << endl;
-}
+
+void print(int queue[], int size, int *front, int *rear) {
+    if ((*front) == -1) {
+        cout << "Queue is Empty!\n";
+        return;
+    }
+    cout << "Queue values are: ";
+    int i = (*front);
+    while(true) {
+        cout << queue[i] << " ";
+        i++;
+		if(i==(*rear) + 1){
+			cout<<"\n";
+			return;
+		}
+		if(i==size){
+			i=0;
+		}
+    }
+    cout << endl;
 }
 main(){
   cout<<"Enter Queue Size:";
@@ -64,7 +74,7 @@ main(){
   rear=-1;
   int queue[size];
   while(true){
-    cout <<"Press\n[1] Push a Value \n[2] Pop a Value\n[3] Print Queue\n[4] End the Program\n> ";
+    cout <<"Press\n[1] Enqueue a Value \n[2] Dequeue a Value\n[3] Print Queue\n[4] End the Program\n> ";
     int press;
     cin>>press;
     switch (press) {
