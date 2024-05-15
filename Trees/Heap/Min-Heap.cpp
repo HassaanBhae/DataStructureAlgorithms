@@ -8,8 +8,9 @@ void cHeapify(int arr[], int ci){
     arr[ci] = arr[pi];
     arr[pi] = tmp;
     ci = pi;
-    if (ci == 0)
+    if (ci == 0){
       break;
+    }
     pi = (ci - 1) / 2;
   }
 }
