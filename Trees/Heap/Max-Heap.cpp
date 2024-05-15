@@ -3,13 +3,14 @@
 using namespace std;
 void upHeapify(int arr[], int ci){
   int pi = (ci - 1) / 2;
-  while (arr[ci] > arr[pi]){
+  while (arr[ci] > arr[pi]) { 
       int tmp = arr[ci];
       arr[ci] = arr[pi];
       arr[pi] = tmp;
       ci = pi;
-      if (ci == 0)
+      if (ci == 0){
         break;
+      }
       pi = (ci - 1) / 2;
   }
 }
@@ -20,7 +21,6 @@ void insert(int arr[], int value, int size){
       if (i != 0){
         upHeapify(arr, i);
       }
-
       break;
     }
     if(i==size){
